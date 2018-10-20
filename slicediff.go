@@ -15,6 +15,8 @@ type StringSlicer interface {
 	Strings() []string
 }
 
+var ActionString = [3]string{"REMOVE", "ADD", "UPDATE"}
+
 func Diff(dst StringSlicer, src StringSlicer) map[string]*Action {
 	actions := make(map[string]*Action)
 
