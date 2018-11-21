@@ -53,8 +53,30 @@ func (t *testSuite) TestDiff() {
 	}
 
 	actions := Diff(dst, src)
-	t.True(len(actions) > 0)
+	t.Equal(3, len(actions))
 
+	t.Equal(Add, actions["B"].Type)
+	t.Equal(1, actions["B"].Id)
+
+	t.Equal(Add, actions["C"].Type)
+	t.Equal(2, actions["C"].Id)
+
+}
+
+func (t *testSuite) TestDiffWithDuplicates() {
+	src := Foos{
+		Foo{"A"},
+		Foo{"B"},
+		Foo{"B"},
+		Foo{"C"},
+	}
+	dst := Bars{
+		Bar{"A"},
+	}
+
+	actions := Diff(dst, src)
+
+	t.Equal(3, len(actions))
 	t.Equal(Add, actions["B"].Type)
 	t.Equal(1, actions["B"].Id)
 }
