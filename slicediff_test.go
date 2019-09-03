@@ -52,7 +52,7 @@ func (t *testSuite) TestDiff() {
 		Bar{"A"},
 	}
 
-	actions := Diff(dst, src)
+	actions := Diff(dst.Strings, src.Strings)
 	t.Equal(3, len(actions))
 
 	t.Equal(Add, actions["B"].Type)
@@ -74,7 +74,7 @@ func (t *testSuite) TestDiffWithDuplicates() {
 		Bar{"A"},
 	}
 
-	actions := Diff(dst, src)
+	actions := Diff(dst.Strings, src.Strings)
 
 	t.Equal(3, len(actions))
 	t.Equal(Add, actions["B"].Type)
